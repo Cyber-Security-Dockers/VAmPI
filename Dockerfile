@@ -1,4 +1,4 @@
-FROM python:3.7-alpine as builder
+OSE 80FROM python:3.7-alpine as builder
 RUN apk --update add bash nano g++
 COPY . /vampi
 WORKDIR /vampi
@@ -12,6 +12,7 @@ COPY --from=builder /usr/local/lib /usr/local/lib
 COPY --from=builder /usr/local/bin /usr/local/bin
 ENV vulnerable=1
 ENV tokentimetolive=60
+EXPOSE 80
 
 ENTRYPOINT ["python"]
 CMD ["app.py"]
